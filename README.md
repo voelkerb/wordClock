@@ -48,7 +48,8 @@ After the website has loaded (this might take some time), you should see the fol
   Password of your WiFi.
   
   ## Color Configuration
-  
+ Colors are displayed as hexadecimal values. Either paste the hexcode or use the color picker to adjust. The latter requires internet access. 
+ 
    ```Color:```
  Color of the time displayed.
   
