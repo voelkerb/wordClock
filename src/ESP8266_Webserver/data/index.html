@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clocktwo Web Server</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        
+        </script>
+        <style>
+        html{
+            height: 100%;
+        }
+        html, body {
+            background: #353535;
+        }
+        body {
+            width: 70%;
+            margin: 0 auto;
+            flex-direction: column;
+            min-height: 100%;
+            display: flex;
+        }
+        main {
+            flex: 1 1 auto;     /* 1 */
+            position: relative;
+            min-width: 200px;
+            max-width: 1000px;
+            margin: 0 auto;
+            z-index: 1;
+            width: 100%;        /* 2 */
+        }
+        h1, form legend {
+            font-family: 'Courier New', cursive;
+            text-shadow: 2px 2px 6px black;
+        }
+        button, h1, form legend, footer, output {
+            color: #d3d3d3;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        form {
+            margin: 24px 0 0 0;
+        }
+        form legend {
+            font-size: 2em;
+        }
+        form fieldset {
+            margin: 0 0 12px;
+            padding: 8px;
+            border: 3px solid #ccc;
+        }
+        form label {
+            color: #d4d4d4;
+            float: left;
+            text-align: right;
+            padding-right: 10px;
+            width: 120px;
+        }
+        form label, form input {
+            margin: 0 0;
+        }
+        form input {
+            width: 100%;
+        }
+        td {
+            width: 100%;
+            padding-bottom:20px;
+        }
+        form span {
+            display: block;
+            overflow: hidden;
+            padding: 0 5px 0 0;
+        }
+        input[type="submit"], .toggle-buttons input:checked + label {
+            background-color: #478dff;
+            color: white;
+        }
+        footer {
+            margin-top: 10px;
+        }
+        .toggle-buttons input[type="radio"] {
+            visibility: hidden;
+        }
+        .toggle-buttons label {
+            border: 1px solid #ccc;
+            width: 33%;
+            text-align: center;
+            margin: 0 0 20px 0;
+            padding: 0px;
+        }
+        input:hover + label {
+            background: #ccc;
+        }
+
+        .together input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            top: 0;
+            left: 0;
+        }
+
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <header style="padding-top: 4%;">
+            <h1>ClockTwo Config</h1>
+        </header>
+        <main>
+            <form action="/general">
+                <fieldset>
+                    <legend>General</legend>
+                    <label for="Name">Name:</label><span><input type="text" placeholder="{{NAME}}" name="Name"/></span><br/>
+                    <label for="NightStart">Night Start:</label><span><input type="text" name="NightStart" placeholder="{{NIGHTSTART}}"/></span><br/>
+                    <label for="NightStop">Night Stop:</label><span><input type="text" name="NightStop" placeholder="{{NIGHTSTOP}}"/></span><br />
+                    <label for="Time">Time:</label><span><input type="datetime-local" name="Time" step="1" placeholder="2000-01-01T00:00:00"/></span><br/>
+                    <label for="TimeS">Time Server:</label><span><input type="text" name="TimeS" placeholder="{{TIMES}}"/></span><br/>
+                    <label for="MQTT">MQTT Server:</label><span><input type="text" name="MQTT" placeholder="{{MQTT}}"/></span><br/>
+                    <input type="submit" name="submit" href="#" value="Update"/>
+                </fieldset>
+            </form>
+            <form action="/wifi">
+                <fieldset>
+                    <legend>Network Configuration</legend>
+                    <label for="SSID">SSID:</label><span><input type="text" name="SSID" placeholder="{{SSID}}" required/></span><br/>
+                    <label for="PWD">PWD:</label><span><input type="password" name="PWD" minlength="8" required/></span><br/>
+                    <input type="submit" name="submit" href="#" value="Update"/>
+                </fieldset>
+            </form>
+            <form action="/color">
+                <fieldset>
+                    <legend>Color Configuration</legend>
+                    <label for="fgColor">Color:</label><span><input name="fgColor" value="{{FGCOLOR}}" class="jscolor {onFineChange:'update(this)'}" id="fgColor"></span><br/>
+                    <label for="bgColor">Back Color:</label><span><input name="bgColor" value="{{BGCOLOR}}" class="jscolor {onFineChange:'update(this)'}" id="bgColor"></span><br/>
+                    <label for="nightColor">Night Color:</label><span><input name="nightColor" value="{{NIGHTCOLOR}}" class="jscolor {onFineChange:'update(this)'}" id="nightColor"></span><br/>
+                    <label for="nightColor">Brightness:</label><span>
+                    <table>
+                        <tr>
+                            <td>
+                                <input name="brightness" type="range" value="{{BRIGHTNESS}}" min="0" max="100" oninput="document.getElementById('brightOut').value=this.value+'%'">
+                            </td>
+                            <td>
+                            <output id="brightOut">{{BRIGHTNESS}}%</output></td>
+                        </tr>
+                    </table></span>
+                    <label for="">Color Order:</label><span>
+                        <div class="toggle-buttons together">
+                            <input type="radio" id="c1" name="order" value="RGB"/>
+                            <label for="c1">RGB</label>
+                            <input type="radio" id="c2" name="order" value="GRB"/>
+                            <label for="c2">GRB</label>
+                            <input type="radio" id="c3" name="order" value="BRG"/>
+                            <label for="c3">BRG</label>
+                        </div>
+                    </span>
+                    <td><input type="submit" name="submit" href="#" value="Update"/>
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+            <p>&copy;Copyright 2022 Benjamin V&ouml;lker. All rights reversed.</p>
+        </footer>
+    </body>
+</html>
