@@ -11,7 +11,7 @@ If it is your first time configuring your clocktwo, it will open a password-free
 Connect to it via your PC or mobile.
 
 Head over to [clocktwo.local](clocktwo.local) in your browser. 
-After the website has loaded (this might take some time), you should see the following configuration.
+After the website has loaded (this might take some time), you should see the following configuration page.
 
 <p align="center">
 <img src="/figures/webserver.png" width="400px">
@@ -19,7 +19,7 @@ After the website has loaded (this might take some time), you should see the fol
 
 ## General
 ```Name:```
- Give your clock a unique name. This comes in handy, if you have multiple of them. If you change the name, the website will be available under _<newName>.local_ and the WiFi access point will be renamed accordingly.
+ Give your clock a unique name. This comes in handy, if you have multiple of them. If you change the name, the website will be available under _newName.local_ and the WiFi access point will be renamed accordingly.
  
   ```Night Start:```
   Time when night mode will be active (24h format)
