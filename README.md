@@ -22,10 +22,10 @@ After the website has loaded (this might take some time), you should see the fol
  Give your clock a unique name. This comes in handy, if you have multiple of them. If you change the name, the website will be available under _newName.local_ and the WiFi access point will be renamed accordingly.
  
   ```Night Start:```
-  Time when night mode will be active (24h format)
+  Time when night mode will be activated (24h format)
   
   ```Night Stop:```
-  Time when night mode will be inactive (24h format)
+  Time when night mode will be deactivated (24h format)
   
   ```Time:```
   If your clocktwo is not connected to the internet, it might have a wrong date and time setting. You can adjust for this here. As the clock recognizes German Daylight Saving Time (DST), you may need to adjust it for your timezone. 
